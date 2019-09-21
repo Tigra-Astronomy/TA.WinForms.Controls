@@ -6,9 +6,9 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://tigra.mit-license.org</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/Tigra-Astronomy/TA.WinForms.Controls</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <iconUrl>https://github.com/Tigra-Astronomy/TA.WinForms.Controls/blob/master/assets/TA.WinForms.Controls.64x64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Prerelease.</releaseNotes>
