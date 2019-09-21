@@ -17,6 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configurat
 		TA.WinForms.Controls.sln.DotSettings = TA.WinForms.Controls.sln.DotSettings
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A24A93EC-D9E2-4DF5-817D-90EB2B3FA8E1}"
+	ProjectSection(SolutionItems) = preProject
+		docs\start.md = docs\start.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedCode\SharedCode.projitems*{35a88e2c-6b73-4e17-a37d-2f579cde4a87}*SharedItemsImports = 4

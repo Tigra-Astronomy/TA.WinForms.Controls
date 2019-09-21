@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://tigra.mit-license.org</licenseUrl>
+    <projectUrl>https://github.com/Tigra-Astronomy/TA.WinForms.Controls</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Prerelease.</releaseNotes>
+    <copyright>Copyright 2006-2019 Tigra Astronomy, all rights reserved</copyright>
+    <tags>WinForms control annunciator led cadence flash blink</tags>
+  </metadata>
+</package>
