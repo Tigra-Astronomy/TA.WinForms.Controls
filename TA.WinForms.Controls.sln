@@ -13,7 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configurat
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		Build-Packages.ps1 = Build-Packages.ps1
 		..\TA.NexDome.AscomServer\GitVersion.yml = ..\TA.NexDome.AscomServer\GitVersion.yml
+		Push-Packages.ps1 = Push-Packages.ps1
 		TA.WinForms.Controls.sln.DotSettings = TA.WinForms.Controls.sln.DotSettings
 	EndProjectSection
 EndProject

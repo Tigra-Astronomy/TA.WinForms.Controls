@@ -64,7 +64,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ICadencedControl.cs" />
-    <Compile Include="ILogger.cs" />
     <Compile Include="IntExtensions.cs" />
     <Compile Include="LEDIndicator.cs">
       <SubType>UserControl</SubType>
