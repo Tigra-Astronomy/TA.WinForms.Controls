@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<package >
-  <metadata>
-  </metadata>
-  <files>
-    <file src="..\assets\TA.WinForms.Controls.64x64.png"   target="assets\" />
-  </files>
-</package>

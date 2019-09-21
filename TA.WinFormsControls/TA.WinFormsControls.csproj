@@ -53,11 +53,10 @@
     <PackageProjectUrl>https://github.com/Tigra-Astronomy/TA.WinForms.Controls</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Tigra-Astronomy/TA.WinForms.Controls.git</RepositoryUrl>
   </PropertyGroup>
-
   <ItemGroup>
-  <!-- ... -->
-    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.2.0"/>
-    <None Include="..\assets\TA.WinForms.Controls.64x64.png" Pack="true" PackagePath="\"/>
+    <!-- ... -->
+    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.2.0" />
+    <None Include="..\assets\TA.WinForms.Controls.64x64.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <!-- ... -->
   <ItemGroup>
@@ -105,8 +104,8 @@
     <EmbeddedResource Include="LEDIndicator.resx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Controls.cd" />
     <None Include="packages.config" />
-    <None Include="TA.WinFormsControls.nuspec" />
   </ItemGroup>
   <Import Project="..\SharedCode\SharedCode.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

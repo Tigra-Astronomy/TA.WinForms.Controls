@@ -21,11 +21,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configurat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A24A93EC-D9E2-4DF5-817D-90EB2B3FA8E1}"
 	ProjectSection(SolutionItems) = preProject
+		License.md = License.md
+		ReadMe.md = ReadMe.md
 		docs\start.md = docs\start.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{EEBA2FCC-52B1-4097-BE51-66AF9EE23B89}"
 	ProjectSection(SolutionItems) = preProject
+		assets\ah500-annunciator-panel.png = assets\ah500-annunciator-panel.png
+		assets\Controls.png = assets\Controls.png
+		assets\SkyNet-annotated.pdn = assets\SkyNet-annotated.pdn
+		assets\SkyNet-annotated.png = assets\SkyNet-annotated.png
+		assets\SkyNet.png = assets\SkyNet.png
 		assets\TA.WinForms.Controls.64x64.png = assets\TA.WinForms.Controls.64x64.png
 		assets\TA.WinForms.Controls.png = assets\TA.WinForms.Controls.png
 		assets\TA.WinFormsControls.ico = assets\TA.WinFormsControls.ico

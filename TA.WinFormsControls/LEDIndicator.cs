@@ -18,7 +18,6 @@ namespace TA.WinFormsControls
     public sealed class LedIndicator : UserControl, ICadencedControl
     {
         private readonly Container components; // required designer variable
-        private bool lastState; // True if cadence updates are enabled
         private bool powerOn = true;
         private bool disposed;
         private Label ledLabel;
@@ -95,19 +94,16 @@ namespace TA.WinFormsControls
         ///     Refreshes the LED display, taking account of the power,
         ///     colour and cadence settings.
         /// </summary>
-        /// <param name="newState">The new state of the control's appearance ('on' or 'off').</param>
+        /// <param name="cadenceState">The new state of the control's appearance ('on' or 'off').</param>
         /// <remarks>
         ///     Implements the <see cref="ICadencedControl.CadenceUpdate" /> method.
         ///     The <see cref="CadencedControlUpdater" /> always calls this method on the GUI thread.
         /// </remarks>
-        public void CadenceUpdate(bool newState)
+        public void CadenceUpdate(bool cadenceState)
         {
             if (disposed)
                 throw new ObjectDisposedException("Attempt to update a control after it has been disposed.");
-            var targetState = newState && powerOn;
-            if (targetState == lastState)
-                return; // shortcut - try to avoid unnecessary redraws
-            lastState = newState; // Remember the new state for next time.
+            var targetState = cadenceState && powerOn;
             if (targetState)
                 RenderOnAppearance();
             else
@@ -166,10 +162,10 @@ namespace TA.WinFormsControls
             this.contentLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.contentLayoutPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // ledPanel
-            // 
-            this.ledPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            //
+            this.ledPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ledPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ledPanel.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -181,11 +177,11 @@ namespace TA.WinFormsControls
             this.ledPanel.Name = "ledPanel";
             this.ledPanel.Size = new System.Drawing.Size(20, 10);
             this.ledPanel.TabIndex = 0;
-            // 
+            //
             // ledLabel
-            // 
-            this.ledLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.ledLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ledLabel.AutoSize = true;
             this.ledLabel.CausesValidation = false;
@@ -196,9 +192,9 @@ namespace TA.WinFormsControls
             this.ledLabel.TabIndex = 1;
             this.ledLabel.Text = "LED Indicator";
             this.ledLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // contentLayoutPanel
-            // 
+            //
             this.contentLayoutPanel.AutoSize = true;
             this.contentLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.contentLayoutPanel.ColumnCount = 2;
@@ -213,9 +209,9 @@ namespace TA.WinFormsControls
             this.contentLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.contentLayoutPanel.Size = new System.Drawing.Size(98, 16);
             this.contentLayoutPanel.TabIndex = 2;
-            // 
+            //
             // LedIndicator
-            // 
+            //
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.contentLayoutPanel);

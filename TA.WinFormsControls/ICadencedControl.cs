@@ -23,6 +23,6 @@ namespace TA.WinFormsControls
         ///     <see cref="CadencedControlUpdater" /> always calls this method on the GUI thread so that control updates are
         ///     thread-safe.
         /// </summary>
-        void CadenceUpdate(bool newState);
+        void CadenceUpdate(bool cadenceState);
     }
 }
