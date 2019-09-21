@@ -22,6 +22,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A24A93EC-D
 		docs\start.md = docs\start.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{EEBA2FCC-52B1-4097-BE51-66AF9EE23B89}"
+	ProjectSection(SolutionItems) = preProject
+		assets\TA.WinForms.Controls.png = assets\TA.WinForms.Controls.png
+		assets\TA.WinFormsControls.ico = assets\TA.WinFormsControls.ico
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedCode\SharedCode.projitems*{35a88e2c-6b73-4e17-a37d-2f579cde4a87}*SharedItemsImports = 4
