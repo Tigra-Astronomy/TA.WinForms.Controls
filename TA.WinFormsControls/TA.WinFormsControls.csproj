@@ -32,7 +32,34 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
+  <!-- NuGet package properties -->
+  <PropertyGroup>
+    <PackageId>TA.WinForms.Controls</PackageId>
+    <Version>$(GitVersion_NuGetVersionV2)</Version>
+    <Authors>Tim Long</Authors>
+    <Company>Tigra Astronomy</Company>
+    <Description>A free collection of Windows Forms Controls by Tigra Astronomy</Description>
+    <Copyright>Copyright 2006-2019 Tigra Astronomy, all rights reserved</Copyright>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>WinForms control annunciator led cadence flash blink</PackageTags>
+    <PackageProjectUrl>https://github.com/Tigra-Astronomy/TA.WinForms.Controls</PackageProjectUrl>
+    <PackageIcon>TA.WinForms.Controls.64x64.png</PackageIcon>
+    <PackageOutputPath>..\NuGet-Packages</PackageOutputPath>
+    <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
+    <IncludeSymbols>true</IncludeSymbols>
+    <PackageProjectUrl>https://github.com/Tigra-Astronomy/TA.WinForms.Controls</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Tigra-Astronomy/TA.WinForms.Controls.git</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+  <!-- ... -->
+    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.2.0"/>
+    <None Include="..\assets\TA.WinForms.Controls.64x64.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+  <!-- ... -->
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -89,6 +116,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets'))" />
     <Error Condition="!Exists('..\packages\GitVersionTask.5.0.1\build\GitVersionTask.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitVersionTask.5.0.1\build\GitVersionTask.props'))" />
+    <Error Condition="!Exists('..\packages\NuGet.Build.Tasks.Pack.5.2.0\build\NuGet.Build.Tasks.Pack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.Build.Tasks.Pack.5.2.0\build\NuGet.Build.Tasks.Pack.targets'))" />
   </Target>
   <Import Project="..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets')" />
+  <Import Project="..\packages\NuGet.Build.Tasks.Pack.5.2.0\build\NuGet.Build.Tasks.Pack.targets" Condition="Exists('..\packages\NuGet.Build.Tasks.Pack.5.2.0\build\NuGet.Build.Tasks.Pack.targets')" />
 </Project>
