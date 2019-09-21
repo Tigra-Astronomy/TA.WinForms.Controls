@@ -78,22 +78,22 @@ namespace TA.WinFormsControls
             }
 
         /// <summary>
-        ///     Unregister from the <see cref="CadenceManager" />.
+        ///     Unregister from the <see cref="CadencedControlUpdater" />.
         /// </summary>
         private void StopCadenceUpdates()
             {
-            CadenceManager.Instance.Remove(this);
+            CadencedControlUpdater.Instance.Remove(this);
             RenderOffAppearance();
             }
 
         /// <summary>
-        ///     Register with the <see cref="CadenceManager" />.
+        ///     Register with the <see cref="CadencedControlUpdater" />.
         /// </summary>
         private void StartCadenceUpdates()
             {
             // We're restarting so ensure the cadence manage knows we were off
             active = false; 
-            CadenceManager.Instance.Add(this);
+            CadencedControlUpdater.Instance.Add(this);
             }
 
         #region Non-designer fields and properties
@@ -251,7 +251,7 @@ namespace TA.WinFormsControls
         /// <param name="newstate">The new state of the control's appearance ('on' or 'off').</param>
         /// <remarks>
         ///     Implements the <see cref="ICadencedControl.CadenceUpdate" /> method.
-        ///     The <see cref="CadenceManager" /> always calls this method on the GUI thread.
+        ///     The <see cref="CadencedControlUpdater" /> always calls this method on the GUI thread.
         /// </remarks>
         public void CadenceUpdate(bool newstate)
             {

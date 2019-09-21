@@ -8,7 +8,7 @@ namespace TA.WinFormsControls
     {
     /// <summary>
     ///     Defines the members necessary for a control to register and be managed by the
-    ///     <see cref="CadenceManager" /> singleton.
+    ///     <see cref="CadencedControlUpdater" /> singleton.
     /// </summary>
     public interface ICadencedControl
         {
@@ -21,7 +21,7 @@ namespace TA.WinFormsControls
 
         /// <summary>
         ///     Updates the control's display.
-        ///     <see cref="CadenceManager" /> always calls this method on the GUI thread so that control updates are thread-safe.
+        ///     <see cref="CadencedControlUpdater" /> always calls this method on the GUI thread so that control updates are thread-safe.
         /// </summary>
         void CadenceUpdate(bool newState);
         }

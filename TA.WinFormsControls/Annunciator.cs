@@ -80,9 +80,9 @@ namespace TA.WinFormsControls
 
             ParentChanged += AnunciatorParentChanged;
 
-            lastState = ((uint) Cadence).Bit(CadenceManager.CadenceBitPosition);
+            lastState = ((uint) Cadence).Bit(CadencedControlUpdater.CadenceBitPosition);
             ForeColor = lastState ? ActiveColor : InactiveColor;
-            CadenceManager.Instance.Add(this);
+            CadencedControlUpdater.Instance.Add(this);
             }
 
         /// <summary>
@@ -247,19 +247,19 @@ namespace TA.WinFormsControls
 
         #region IDisposable pattern
         /// <summary>
-        ///     Unregisters this control from the <see cref="CadenceManager" /> so that it will no longer receive cadence updates.
+        ///     Unregisters this control from the <see cref="CadencedControlUpdater" /> so that it will no longer receive cadence updates.
         /// </summary>
         private void StopCadenceUpdates()
             {
-            CadenceManager.Instance.Remove(this);
+            CadencedControlUpdater.Instance.Remove(this);
             }
 
         /// <summary>
-        ///     Registers this control with the <see cref="CadenceManager" /> so that it will receive cadence updates.
+        ///     Registers this control with the <see cref="CadencedControlUpdater" /> so that it will receive cadence updates.
         /// </summary>
         private void StartCadenceUpdates()
             {
-            CadenceManager.Instance.Add(this);
+            CadencedControlUpdater.Instance.Add(this);
             }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace TA.WinFormsControls
             if (!disposed)
                 {
                 if (disposing)
-                    StopCadenceUpdates(); // Unregister from CadenceManager.
+                    StopCadenceUpdates(); // Unregister from CadencedControlUpdater.
 
                 disposed = true;
                 }
@@ -313,7 +313,7 @@ namespace TA.WinFormsControls
         /// </param>
         /// <remarks>
         ///     Implements the <see cref="ICadencedControl.CadenceUpdate" /> method.
-        ///     The <see cref="CadenceManager" /> always calls this method on the GUI thread.
+        ///     The <see cref="CadencedControlUpdater" /> always calls this method on the GUI thread.
         /// </remarks>
         public void CadenceUpdate(bool newState)
             {
