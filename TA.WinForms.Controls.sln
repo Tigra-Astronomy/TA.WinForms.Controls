@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A24A93EC-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{EEBA2FCC-52B1-4097-BE51-66AF9EE23B89}"
 	ProjectSection(SolutionItems) = preProject
+		assets\TA.WinForms.Controls.64x64.png = assets\TA.WinForms.Controls.64x64.png
 		assets\TA.WinForms.Controls.png = assets\TA.WinForms.Controls.png
 		assets\TA.WinFormsControls.ico = assets\TA.WinFormsControls.ico
 	EndProjectSection
