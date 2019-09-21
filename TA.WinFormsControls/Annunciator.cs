@@ -1,8 +1,7 @@
-﻿// This file is part of the TI.DigitalDomeWorks project
-// 
-// Copyright © 2015-2016 Tigra Networks., all rights reserved.
-// 
-// File: Annunciator.cs  Last modified: 2016-09-12@23:15 by Tim Long
+﻿// This file is part of the TA.WinForms.Controls project
+// Copyright © 2016-2019 Tigra Astronomy, all rights reserved.
+// File: Annunciator.cs  Last modified: 2019-09-21@02:42 by Tim Long
+// Licensed under the Tigra MIT License, see https://tigra.mit-license.org/
 
 using System;
 using System.ComponentModel;
@@ -10,325 +9,231 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace TA.WinFormsControls
-    {
+{
     /// <summary>
     ///     <para>
-    ///         Wikipedia: An annunciator panel is a group of lights used as a central indicator of status of equipment or
-    ///         systems in an aircraft, industrial process, building or other installation. Usually the annunciator panel
-    ///         includes a main warning lamp or audible signal to draw the attention of operating personnel to the
-    ///         annunciator panel for abnormal events or conditions.
+    ///         Wikipedia: An annunciator panel is a group of lights used as a central indicator of
+    ///         status of equipment or systems in an aircraft, industrial process, building or other
+    ///         installation. Usually the annunciator panel includes a main warning lamp or audible
+    ///         signal to draw the attention of operating personnel to the annunciator panel for
+    ///         abnormal events or conditions.
     ///     </para>
     ///     <para>
-    ///         The Annunciator control provides a simple, standard method of displaying a status notification to the user
-    ///         within a Windows Forms application. Anunciators are best used with the companion
-    ///         <see cref="AnnunciatorPanel" /> control, although they can be placed anywhere on a Windows Form. The control
-    ///         can be used to provide simple On/Off status displays or can be configured to blink with various levels of
-    ///         urgency so that it can represent alarm conditions.
+    ///         <para>
+    ///             <para>
+    ///                 The <see cref="Annunciator" /> control provides a simple, standard method of
+    ///                 displaying a status notification to the user within a Windows Forms
+    ///                 application. Anunciators are best used with the companion
+    ///                 <see cref="AnnunciatorPanel" />
+    ///             </para>
+    ///             <para>
+    ///                 control, although they can be placed anywhere on a Windows Form. The control
+    ///                 can be used to provide simple On/Off status displays or can be configured to
+    ///                 blink with various levels of urgency so that it can represent alarm
+    ///                 conditions.
+    ///             </para>
+    ///         </para>
     ///         <example>
-    ///             An anunciator may represent the slewing state of a telescope. It would be represented by the word "SLEW".
-    ///             When the telescope is stationary, the anunciator remains inactive. When the telescope begins to slew, the
-    ///             anunciator is set to
-    ///             <see cref="CadencePattern.BlinkFast" />to alert the user that the equipment is in motion.
+    ///             An annunciator may represent the slewing state of a telescope. It would be
+    ///             represented by the word "SLEW". When the telescope is stationary, the
+    ///             annunciator remains inactive. When the telescope begins to slew, the annunciator
+    ///             is set to <see cref="TA.WinFormsControls.CadencePattern.BlinkFast" /> to alert
+    ///             the user that the equipment is in motion.
     ///         </example>
     ///     </para>
     ///     <para>
-    ///         Each anunciator has active and inactive states. When inactive, the control displays in a subdued colour that
-    ///         is readable but does not draw attention. When active, the control will display in a stronger, more visible
-    ///         colour and will either have a steady state or will blink in one of a number of predefined cadence patterns.
-    ///         The cadence patterns are fixed and not user-definable, so that a standard 'look and feel' is promoted
-    ///         accross different applications.
+    ///         Each annunciator has active and inactive states. When inactive, the control displays
+    ///         in a subdued colour that is readable but does not draw attention. When active, the
+    ///         control will display in a stronger, more visible colour and will either have a
+    ///         steady state or will blink in one of a number of predefined cadence patterns. The
+    ///         cadence patterns are fixed and not user-definable, so that a standard 'look and
+    ///         feel' is promoted across different applications.
     ///     </para>
     ///     <para>
-    ///         Whilst the user is at liberty to choose different colours for both <see cref="ActiveColor" /> and
-    ///         <see cref="InactiveColor" />, The default colours have been chosen to look similar to earlier applications
-    ///         that use similar displays and the defaults are highly recommended for most circumstances. The control's
+    ///         Whilst the user is at liberty to choose different colours for both
+    ///         <see cref="TA.WinFormsControls.Annunciator.ActiveColor" /> and
+    ///         <see cref="TA.WinFormsControls.Annunciator.InactiveColor" /> , The default colours
+    ///         have been chosen to look similar to earlier applications that use similar displays
+    ///         and the defaults are highly recommended for most circumstances. The control's
     ///         background colour is inherited from the parent control (which should normally be an
-    ///         <see cref="AnnunciatorPanel" />) and is not directly settable by the user.
+    ///         <see cref="AnnunciatorPanel" /> ) and is not directly settable by the user.
     ///     </para>
     /// </summary>
+    [DefaultProperty(nameof(Label.Text))]
     public sealed class Annunciator : Label, ICadencedControl
-        {
-        /// <summary>
-        ///     Tracks whether this object has been disposed.
-        /// </summary>
+    {
         private bool disposed;
-
-        /// <summary>
-        ///     A flag that records the anunciator's last known state.
-        /// </summary>
         private bool lastState;
-
-        /// <summary>
-        ///     Stores the mute status for the anunciator.
-        /// </summary>
-        private bool mute;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Annunciator" /> class.
         /// </summary>
         public Annunciator()
-            {
-            // Default values
-            BackColor = Color.FromArgb(64, 0, 0);
+        {
             InactiveColor = Color.FromArgb(96, 4, 4);
             ActiveColor = Color.FromArgb(200, 4, 4);
             Font = new Font("Consolas", 10.0F);
             Cadence = CadencePattern.SteadyOn;
-
+            BackColor = Parent?.BackColor ?? Color.FromArgb(64, 0, 0);
             if (Parent != null)
                 BackColor = Parent.BackColor; // Inherit background colour from parent.
-
             ParentChanged += AnunciatorParentChanged;
-
             lastState = ((uint) Cadence).Bit(CadencedControlUpdater.CadenceBitPosition);
-            ForeColor = lastState ? ActiveColor : InactiveColor;
+            base.ForeColor = lastState ? ActiveColor : InactiveColor;
             CadencedControlUpdater.Instance.Add(this);
-            }
-
-        /// <summary>
-        ///     Gets or sets the foreground color of the control. There is little point in setting this value
-        ///     directly as it will normally be constantly overwritten at runtime.
-        /// </summary>
-        /// <value></value>
-        /// <returns>
-        ///     The foreground <see cref="T:System.Drawing.Color" /> of the control. The default is the value of the
-        ///     <see cref="P:System.Windows.Forms.Control.DefaultForeColor" /> property.
-        /// </returns>
-        /// <PermissionSet>
-        ///     <IPermission
-        ///         class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-        ///         version="1" Unrestricted="true" />
-        /// </PermissionSet>
-        [Category("Appearance"), DefaultValue(0xff800404), EditorBrowsable(EditorBrowsableState.Never),
-         Description("This property is not normally set directly as it will be overwritten at runtime.")]
-        // Color.FromArgb(128, 4, 4)
-        public override Color ForeColor
-            {
-            get { return base.ForeColor; }
-            set { base.ForeColor = value; }
-            }
-
-        /// <summary>
-        ///     Gets or sets the color of the anunciator text when inactive.
-        /// </summary>
-        /// <value></value>
-        /// <returns>
-        ///     The foreground <see cref="T:System.Drawing.Color" /> of the control. The default is the value of the
-        ///     <see cref="P:System.Windows.Forms.Control.DefaultForeColor" /> property.
-        /// </returns>
-        /// <PermissionSet>
-        ///     <IPermission
-        ///         class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-        ///         version="1" Unrestricted="true" />
-        /// </PermissionSet>
-        [Category("Appearance"), DefaultValue(0xff480404), Description(
-            "The anunciator's inactive colour. This is usually set to a value close to (but not equal) to the background colour. The default value is recommended for most situations."
-            )]
-        // Color.FromArgb(72, 4, 4)
-        public Color InactiveColor { get; set; }
+        }
 
         /// <summary>
         ///     Gets or sets the color of the anunciator text when active.
         /// </summary>
-        /// <value>The color of the anunciator text when active.</value>
-        [Category("Appearance"), EditorBrowsable(EditorBrowsableState.Always), DefaultValue(0xff800404), Description(
-            "The anunciators active color. This should be bright and have a high contrast with the control's background. The default value is recommended for most situations."
-            )]
+        /// <value>
+        ///     The color of the anunciator text when active.
+        /// </value>
+        [Category("Annunciator")]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        [DefaultValue(0xff800404)]
+        [Description(
+            "The active color is displayed when the annunciator is on (illuminated). This should be bright and have a high contrast with the control's background. The default value is recommended for most situations."
+        )]
         public Color ActiveColor { get; set; }
 
         /// <summary>
-        ///     Gets or sets the background color for the control.
+        ///     Gets or sets the cadence (blink pattern) of the anunciator. Different cadence
+        ///     patterns imply different levels of urgency or severity.
         /// </summary>
-        /// <value></value>
-        /// <returns>
-        ///     A <see cref="T:System.Drawing.Color" /> that represents the background color of the control. The default is the
-        ///     value
-        ///     of the <see cref="P:System.Windows.Forms.Control.DefaultBackColor" /> property.
-        /// </returns>
-        /// <PermissionSet>
-        ///     <IPermission
-        ///         class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-        ///         version="1" Unrestricted="true" />
-        /// </PermissionSet>
-        [Category("Appearance"), DefaultValue(0xff400000), EditorBrowsable(EditorBrowsableState.Never),
-         Description("This property is not normally set directly as it will be overwritten at runtime.")]
-        // Color.FromArgb(64, 0, 0)
-        public override Color BackColor
-            {
-            get { return base.BackColor; }
-            set { base.BackColor = value; }
-            }
-
-        /// <summary>
-        ///     Gets or sets a value indicating whether the control can respond to user interaction.
-        ///     For an anunciator, this affects how it displays. A disabled anunciator will always display in
-        ///     its <see cref="InactiveColor" /> regardless of other settings and it will not participate in
-        ///     cadence updates.
-        /// </summary>
-        /// <value></value>
-        /// <returns>
-        ///     <c>true</c> if the control can respond to user interaction; otherwise, <c>false</c>.
-        ///     The default is <c>true</c>.
-        /// </returns>
-        /// <PermissionSet>
-        ///     <IPermission
-        ///         class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-        ///         version="1" Unrestricted="true" />
-        ///     <IPermission
-        ///         class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-        ///         version="1" Unrestricted="true" />
-        ///     <IPermission
-        ///         class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-        ///         version="1" Flags="UnmanagedCode, ControlEvidence" />
-        ///     <IPermission
-        ///         class="System.Diagnostics.PerformanceCounterPermission, System, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-        ///         version="1" Unrestricted="true" />
-        /// </PermissionSet>
-        [Category("Behavior"), DefaultValue(true), EditorBrowsable(EditorBrowsableState.Always),
-         Description(
-             "Enables or disables the anunciator. When muted, the anunciator always displays in its InactiveColor.")]
-        public bool Mute
-            {
-            get { return mute; }
-            set
-                {
-                mute = value;
-                if (value)
-                    {
-                    StopCadenceUpdates();
-                    CadenceUpdate(false); // Sets the anunciator to its inactive state.
-                    }
-                else
-                    StartCadenceUpdates();
-                }
-            }
-
-        /// <summary>
-        ///     Handles the ParentChanged event of the Annunciator control.
-        ///     Changes the control's background colour to blend in with the parent control.
-        /// </summary>
-        /// <param name="sender">
-        ///     The source of the event.
-        /// </param>
-        /// <param name="e">
-        ///     The <see cref="System.EventArgs" /> instance containing the event data.
-        /// </param>
-        private void AnunciatorParentChanged(object sender, EventArgs e)
-            {
-            if (Parent != null)
-                BackColor = Parent.BackColor;
-            else
-                BackColor = Color.FromArgb(64, 0, 0);
-            }
-
-        /// <summary>
-        ///     Mutes each <see cref="Annunciator" /> passed in the argument list.
-        /// </summary>
-        /// <param name="items">
-        ///     The items to be muted.
-        /// </param>
-        public static void MuteAll(params Annunciator[] items)
-            {
-            foreach (var item in items)
-                item.Mute = true;
-            }
-
-        /// <summary>
-        ///     Unmutes each <see cref="Annunciator" /> passed in the argument list.
-        /// </summary>
-        /// <param name="items">
-        ///     The items to be unmuted.
-        /// </param>
-        public static void UnmuteAll(params Annunciator[] items)
-            {
-            foreach (var item in items)
-                item.Mute = false;
-            }
-
-        #region IDisposable pattern
-        /// <summary>
-        ///     Unregisters this control from the <see cref="CadencedControlUpdater" /> so that it will no longer receive cadence updates.
-        /// </summary>
-        private void StopCadenceUpdates()
-            {
-            CadencedControlUpdater.Instance.Remove(this);
-            }
-
-        /// <summary>
-        ///     Registers this control with the <see cref="CadencedControlUpdater" /> so that it will receive cadence updates.
-        /// </summary>
-        private void StartCadenceUpdates()
-            {
-            CadencedControlUpdater.Instance.Add(this);
-            }
-
-        /// <summary>
-        ///     Releases all resources used by the <see cref="T:System.ComponentModel.Component" />.
-        /// </summary>
-        public new void Dispose()
-            {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-            }
-
-        /// <summary>
-        ///     Releases the unmanaged resources used by the <see cref="T:System.Windows.Forms.Label" /> and optionally releases
-        ///     the
-        ///     managed resources.
-        /// </summary>
-        /// <param name="disposing">
-        ///     true to release both managed and unmanaged resources; false to release only unmanaged resources.
-        /// </param>
-        protected override void Dispose(bool disposing)
-            {
-            if (!disposed)
-                {
-                if (disposing)
-                    StopCadenceUpdates(); // Unregister from CadencedControlUpdater.
-
-                disposed = true;
-                }
-
-            base.Dispose(disposing); // Let the underlying control class clean itself up.
-            }
-        #endregion
-
-        #region ICadencedControl Members
-        /// <summary>
-        ///     Gets or sets the cadence (blink pattern) of the anunciator.
-        ///     Different cadence patterns imply different levels of urgency or severity.
-        /// </summary>
-        /// <value>The cadence pattern.</value>
-        [Category("Appearance"), DefaultValue(CadencePattern.SteadyOn), EditorBrowsable(EditorBrowsableState.Always),
-         Description(
-             "Determines the cadence (blink pattern) for the anunciator. Different cadences imply different levels of severity or urgency."
-             )]
+        /// <value>
+        ///     The cadence pattern.
+        /// </value>
+        [Category("Annunciator")]
+        [DefaultValue(CadencePattern.SteadyOn)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        [Description(
+            "Determines the cadence (blink pattern) for the annunciator. Different cadences imply different levels of severity or urgency."
+        )]
         public CadencePattern Cadence { get; set; }
 
         /// <summary>
-        ///     Updates the anunciator's display, if it has changed since the last update.
+        ///     Gets or sets the color of the annunciatior text when inactive (off, dim). The color
+        ///     chosen should provide low contrast with the control's background such that it is
+        ///     barely readable.
+        /// </summary>
+        [Category("Annunciator")]
+        [DefaultValue(0xff480404)]
+        [Description(
+            "The anunciator's inactive colour. This is usually set to a value close to (but not equal) to the background colour such that the text is barely discernable. The default value is recommended for most situations."
+        )]
+        public Color InactiveColor { get; set; }
+
+        /// <summary>
+        ///     When muted, an anunciator will always display in its
+        ///     <see cref="TA.WinFormsControls.Annunciator.InactiveColor" /> . This provides a handy
+        ///     On/Off <see langword="switch" /> without disturbing the cadence pattern.
+        /// </summary>
+        [Category("Annunciator")]
+        [DefaultValue(false)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        [Description(
+            "When muted, the annunciator always displays in its InactiveColor regardless of Cadence.")]
+        public bool Mute { get; set; }
+
+        /// <summary>
+        ///     Hides the <see cref="TA.WinFormsControls.Annunciator.ForeColor" /> property of the
+        ///     <see cref="Label" /> base class because the foreground colour is controlled by the
+        ///     cadence and should not be user editable.
+        /// </summary>
+        /// <value>
+        ///     The color of the fore.
+        /// </value>
+        [Category("Appearance")]
+        [DefaultValue(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private new Color ForeColor
+            {
+            get => ActiveColor;
+            set => ActiveColor = value;
+            }
+
+        /// <summary>
+        ///     Updates the annunciator's display, if it has changed since the last update. This
+        ///     method is typically called periodically by <see cref="CadencedControlUpdater" /> .
         /// </summary>
         /// <param name="newState">
         ///     The new state of the control's appearance ('on' or 'off').
         /// </param>
-        /// <remarks>
-        ///     Implements the <see cref="ICadencedControl.CadenceUpdate" /> method.
-        ///     The <see cref="CadencedControlUpdater" /> always calls this method on the GUI thread.
-        /// </remarks>
         public void CadenceUpdate(bool newState)
-            {
+        {
             if (IsDisposed)
-                throw new ObjectDisposedException("Attempt to update an annunciator control after it has been disposed.");
+                throw new ObjectDisposedException(
+                    "Attempt to update an annunciator control after it has been disposed.");
 
             // Update the control's display, but only if there has been a change of state.
             if (newState != lastState)
-                {
-                ForeColor = newState ? ActiveColor : InactiveColor;
+            {
+                base.ForeColor = newState ? ActiveColor : InactiveColor;
+                lastState = newState;
                 Invalidate();
                 Update();
-                lastState = newState;
-                }
             }
-        #endregion
+        }
+
+        /// <summary>
+        ///     Releases all resources used by the <see cref="Component" /> .
+        /// </summary>
+        public new void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        ///     Releases the unmanaged resources used by the <see cref="Label" /> and optionally
+        ///     releases the managed resources.
+        /// </summary>
+        /// <param name="fromUserCode">
+        ///     <see langword="true" /> to release both managed and unmanaged resources;
+        ///     <see langword="false" /> to release only unmanaged resources.
+        /// </param>
+        protected override void Dispose(bool fromUserCode)
+        {
+            if (!disposed)
+            {
+                if (fromUserCode)
+                    StopCadenceUpdates();
+                disposed = true;
+            }
+            base.Dispose(fromUserCode); // Let the underlying control class clean itself up.
+        }
+
+        /// <summary>
+        ///     Handles the ParentChanged event of the Annunciator control. Changes the control's
+        ///     background colour to blend in with the parent control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void AnunciatorParentChanged(object sender, EventArgs e)
+        {
+            if (Parent != null)
+                BackColor = Parent.BackColor;
+            else
+                BackColor = Color.FromArgb(64, 0, 0);
+        }
+
+        /// <summary>
+        ///     Registers this control with the <see cref="CadencedControlUpdater" /> so that it
+        ///     will receive cadence updates.
+        /// </summary>
+        private void StartCadenceUpdates()
+        {
+            CadencedControlUpdater.Instance.Add(this);
+        }
+
+        /// <summary>
+        ///     Unregisters this control from the <see cref="CadencedControlUpdater" /> so that it
+        ///     will no longer receive cadence updates.
+        /// </summary>
+        private void StopCadenceUpdates()
+        {
+            CadencedControlUpdater.Instance.Remove(this);
         }
     }
+}

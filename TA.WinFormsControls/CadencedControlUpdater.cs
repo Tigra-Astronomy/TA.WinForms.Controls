@@ -1,4 +1,9 @@
-﻿using System;
+﻿// This file is part of the TA.WinForms.Controls project
+// Copyright © 2016-2019 Tigra Astronomy, all rights reserved.
+// File: CadencedControlUpdater.cs  Last modified: 2019-09-21@02:42 by Tim Long
+// Licensed under the Tigra MIT License, see https://tigra.mit-license.org/
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -29,17 +34,17 @@ namespace TA.WinFormsControls
             new Dictionary<int, WeakReference<ICadencedControl>>();
 
         /// <summary>
-        ///     An object used for thread synchronization during object initialization. This ensures that the singleton
-        ///     is thread-safe.
-        /// </summary>
-        private static readonly object SyncRoot = new object();
-
-        /// <summary>
         ///     <para>The one and only <see cref="TA.WinFormsControls.CadencedControlUpdater.instance" /></para>
         ///     <para>of this class.</para>
         /// </summary>
         private static readonly Lazy<CadencedControlUpdater> lazyInstance =
             new Lazy<CadencedControlUpdater>(() => new CadencedControlUpdater());
+
+        /// <summary>
+        ///     An object used for thread synchronization during object initialization. This ensures that the singleton
+        ///     is thread-safe.
+        /// </summary>
+        private static readonly object SyncRoot = new object();
 
         private CancellationTokenSource cancellationTokenSource;
         private Task updateTask;
@@ -117,34 +122,10 @@ namespace TA.WinFormsControls
         {
             cancellationTokenSource?.Cancel();
             updateTask?.ContinueWith(task => Trace.TraceInformation("Cadence updates cancelled."))
-                .Wait(TimeSpan.FromSeconds(1));
+                .Wait(TimeSpan.FromMilliseconds(200));
             updateTask = null;
             cancellationTokenSource?.Dispose();
             cancellationTokenSource = null;
-        }
-
-        /// <summary>
-        ///     Updates the state of each of the managed <see cref="ICadencedControl" /> objects. The task runs
-        ///     asynchronously and repeatedly updates the managed items at the specified interval, until cancelled.
-        /// </summary>
-        /// <param name="updateInterval">The update interval.</param>
-        /// <param name="cancel">A cancellation token that can be used to terminate the task.</param>
-        private async Task UpdateTask(TimeSpan updateInterval, CancellationToken cancel)
-        {
-            while (!cancel.IsCancellationRequested)
-            {
-                await Task.Delay(updateInterval, cancel).ContinueOnCurrentThread();
-                var updateList = ControlList.ToArray(); // Iterate over a copy of the collection.
-                foreach (var control in updateList)
-                {
-                    if (cancel.IsCancellationRequested)
-                        return;
-                    UpdateOneControl(control);
-                }
-                // Increment and (if necessary) wrap the cadence bit position index.
-                if (++CadenceBitPosition > 31)
-                    CadenceBitPosition = 0;
-            }
         }
 
         /// <summary>
@@ -174,6 +155,30 @@ namespace TA.WinFormsControls
             {
                 // Any error whatsoever, and the control is toast.
                 ControlList.Remove(item.Key);
+            }
+        }
+
+        /// <summary>
+        ///     Updates the state of each of the managed <see cref="ICadencedControl" /> objects. The task runs
+        ///     asynchronously and repeatedly updates the managed items at the specified interval, until cancelled.
+        /// </summary>
+        /// <param name="updateInterval">The update interval.</param>
+        /// <param name="cancel">A cancellation token that can be used to terminate the task.</param>
+        private async Task UpdateTask(TimeSpan updateInterval, CancellationToken cancel)
+        {
+            while (!cancel.IsCancellationRequested)
+            {
+                await Task.Delay(updateInterval, cancel).ContinueOnCurrentThread();
+                var updateList = ControlList.ToArray(); // Iterate over a copy of the collection.
+                foreach (var control in updateList)
+                {
+                    if (cancel.IsCancellationRequested)
+                        return;
+                    UpdateOneControl(control);
+                }
+                // Increment and (if necessary) wrap the cadence bit position index.
+                if (++CadenceBitPosition > 31)
+                    CadenceBitPosition = 0;
             }
         }
     }

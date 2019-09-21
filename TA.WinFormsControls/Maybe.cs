@@ -1,10 +1,15 @@
+// This file is part of the TA.WinForms.Controls project
+// Copyright © 2016-2019 Tigra Astronomy, all rights reserved.
+// File: Maybe.cs  Last modified: 2019-09-21@02:42 by Tim Long
+// Licensed under the Tigra MIT License, see https://tigra.mit-license.org/
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace TA.WinFormsControls
-    {
+{
     /// <summary>
     ///     Represents an object that may or may not have a value (strictly, a collection of zero or one elements). Use
     ///     LINQ expression <c>maybe.Any()</c> to determine if there is a value. Use LINQ expression
@@ -19,28 +24,28 @@ namespace TA.WinFormsControls
     /// </remarks>
     /// <typeparam name="T">The type of the item in the collection.</typeparam>
     public class Maybe<T> : IEnumerable<T>
-        {
+    {
         private static readonly Maybe<T> EmptyInstance = new Maybe<T>();
 
         private readonly IEnumerable<T> values;
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="TA.WinFormsControls.Maybe`1" /> with no value.
-        /// </summary>
-        private Maybe()
-            {
-            values = new T[0];
-            }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="TA.WinFormsControls.Maybe`1" /> with a value.
         /// </summary>
         /// <param name="value">The value.</param>
         public Maybe(T value)
-            {
+        {
             Contract.Requires(value != null);
             values = new[] {value};
-            }
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="TA.WinFormsControls.Maybe`1" /> with no value.
+        /// </summary>
+        private Maybe()
+        {
+            values = new T[0];
+        }
 
         /// <summary>
         ///     Gets an instance that does not contain a value.
@@ -73,22 +78,10 @@ namespace TA.WinFormsControls
         ///     collection.
         /// </returns>
         public IEnumerator<T> GetEnumerator()
-            {
+        {
             Contract.Ensures(Contract.Result<IEnumerator<T>>() != null);
             return values.GetEnumerator();
-            }
-
-        IEnumerator IEnumerable.GetEnumerator()
-            {
-            Contract.Ensures(Contract.Result<IEnumerator>() != null);
-            return GetEnumerator();
-            }
-
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-            {
-            Contract.Invariant(values != null);
-            }
+        }
 
         /// <summary>
         ///     Returns a <see cref="System.String" /> that represents this instance.
@@ -96,11 +89,23 @@ namespace TA.WinFormsControls
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         [Pure]
         public override string ToString()
-            {
+        {
             Contract.Ensures(Contract.Result<string>() != null);
             if (Equals(Empty))
                 return "{no value}";
             return this.Single().ToString();
-            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            Contract.Ensures(Contract.Result<IEnumerator>() != null);
+            return GetEnumerator();
+        }
+
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(values != null);
         }
     }
+}

@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.6.7\lib\net45\NLog.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -70,10 +67,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Maybe.cs" />
-    <Compile Include="NativeMethods.cs" />
-    <Compile Include="Notification.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrafficLights.cs" />
   </ItemGroup>
@@ -81,10 +74,6 @@
     <EmbeddedResource Include="Annunciator.resx" />
     <EmbeddedResource Include="FadeDialog.resx" />
     <EmbeddedResource Include="LEDIndicator.resx" />
-    <EmbeddedResource Include="Notification.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
