@@ -1,6 +1,6 @@
 ﻿// This file is part of the TA.WinForms.Controls project
 // Copyright © 2016-2019 Tigra Astronomy, all rights reserved.
-// File: Annunciator.cs  Last modified: 2019-09-21@02:42 by Tim Long
+// File: Annunciator.cs  Last modified: 2019-09-21@23:00 by Tim Long
 // Licensed under the Tigra MIT License, see https://tigra.mit-license.org/
 
 using System;
@@ -59,11 +59,11 @@ namespace TA.WinFormsControls
     ///         <see cref="AnnunciatorPanel" /> ) and is not directly settable by the user.
     ///     </para>
     /// </summary>
-    [DefaultProperty(nameof(Label.Text))]
+    [DefaultProperty(nameof(Text))]
     public sealed class Annunciator : Label, ICadencedControl
     {
         private bool disposed;
-        private bool lastState;
+        private Color activeColor;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Annunciator" /> class.
@@ -78,8 +78,8 @@ namespace TA.WinFormsControls
             if (Parent != null)
                 BackColor = Parent.BackColor; // Inherit background colour from parent.
             ParentChanged += AnunciatorParentChanged;
-            lastState = ((uint) Cadence).Bit(CadencedControlUpdater.CadenceBitPosition);
-            base.ForeColor = lastState ? ActiveColor : InactiveColor;
+            var currentState = ((uint) Cadence).Bit(CadencedControlUpdater.CadenceBitPosition);
+            ForeColor = currentState ? ActiveColor : InactiveColor;
             CadencedControlUpdater.Instance.Add(this);
         }
 
@@ -91,11 +91,20 @@ namespace TA.WinFormsControls
         /// </value>
         [Category("Annunciator")]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DefaultValue(0xff800404)]
+        [DefaultValue(0xffdc143c)] // Crimson
         [Description(
             "The active color is displayed when the annunciator is on (illuminated). This should be bright and have a high contrast with the control's background. The default value is recommended for most situations."
         )]
-        public Color ActiveColor { get; set; }
+        public Color ActiveColor
+            {
+            get => activeColor;
+            set
+                {
+                activeColor = value;
+                if (DesignMode)
+                    ForeColor = value;
+                }
+            }
 
         /// <summary>
         ///     Gets or sets the cadence (blink pattern) of the anunciator. Different cadence
@@ -111,6 +120,24 @@ namespace TA.WinFormsControls
             "Determines the cadence (blink pattern) for the annunciator. Different cadences imply different levels of severity or urgency."
         )]
         public CadencePattern Cadence { get; set; }
+
+        /// <summary>
+        ///     Hides the <see cref="TA.WinFormsControls.Annunciator.ForeColor" /> property of the
+        ///     <see cref="Label" /> base class because the foreground colour is controlled by the
+        ///     cadence and should not be user editable.
+        /// </summary>
+        /// <value>
+        ///     The color of the fore.
+        /// </value>
+        [Category("Appearance")]
+        [DefaultValue(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Description("Do not set this value directly. Use ActiveColor instead.")]
+        public override Color ForeColor
+            {
+            get => base.ForeColor;
+            set => base.ForeColor = value;
+            }
 
         /// <summary>
         ///     Gets or sets the color of the annunciatior text when inactive (off, dim). The color
@@ -137,40 +164,24 @@ namespace TA.WinFormsControls
         public bool Mute { get; set; }
 
         /// <summary>
-        ///     Hides the <see cref="TA.WinFormsControls.Annunciator.ForeColor" /> property of the
-        ///     <see cref="Label" /> base class because the foreground colour is controlled by the
-        ///     cadence and should not be user editable.
-        /// </summary>
-        /// <value>
-        ///     The color of the fore.
-        /// </value>
-        [Category("Appearance")]
-        [DefaultValue(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        private new Color ForeColor
-            {
-            get => ActiveColor;
-            set => ActiveColor = value;
-            }
-
-        /// <summary>
         ///     Updates the annunciator's display, if it has changed since the last update. This
         ///     method is typically called periodically by <see cref="CadencedControlUpdater" /> .
         /// </summary>
-        /// <param name="newState">
+        /// <param name="cadenceState">
         ///     The new state of the control's appearance ('on' or 'off').
         /// </param>
-        public void CadenceUpdate(bool newState)
+        public void CadenceUpdate(bool cadenceState)
         {
             if (IsDisposed)
                 throw new ObjectDisposedException(
                     "Attempt to update an annunciator control after it has been disposed.");
 
-            // Update the control's display, but only if there has been a change of state.
-            if (newState != lastState)
+            bool targetState = cadenceState && !Mute;
+            Color targetColor = targetState ? ActiveColor : InactiveColor;
+
+            if (ForeColor != targetColor)
             {
-                base.ForeColor = newState ? ActiveColor : InactiveColor;
-                lastState = newState;
+                ForeColor = targetColor;
                 Invalidate();
                 Update();
             }
