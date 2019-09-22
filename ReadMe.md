@@ -1,7 +1,5 @@
 # Windows Forms Controls by Tigra Astronomy
 
-[TOC]
-
 ## Introduction
 
 The Tigra Windows Forms Controls library offers cadenced (blinking) status indicators of various kinds, plus the facility for user-written controls to benefit from cadenced behaviour.

@@ -23,7 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A24A93EC-D
 	ProjectSection(SolutionItems) = preProject
 		License.md = License.md
 		ReadMe.md = ReadMe.md
-		docs\start.md = docs\start.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{EEBA2FCC-52B1-4097-BE51-66AF9EE23B89}"
