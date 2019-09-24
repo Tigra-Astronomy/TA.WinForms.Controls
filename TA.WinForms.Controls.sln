@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29311.281
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.WinFormsControls", "TA.WinFormsControls\TA.WinFormsControls.csproj", "{35A88E2C-6B73-4E17-A37D-2F579CDE4A87}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.WinFormsControls.TestApplication", "TA.WinFormsControls.TestApplication\TA.WinFormsControls.TestApplication.csproj", "{D39891B1-EDE6-4388-9F89-B8B73AC3B458}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedCode", "SharedCode\SharedCode.shproj", "{3E94A060-AE5F-4F75-A81A-8792974AAC9E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{89369161-1B7C-48B9-B485-61AD97D4B260}"
@@ -37,24 +33,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{EEBA2F
 		assets\TA.WinFormsControls.ico = assets\TA.WinFormsControls.ico
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.WinForms.Controls", "TA.WinForms.Controls\TA.WinForms.Controls.csproj", "{5BF01176-4BA4-4545-BEEC-1B2C341F5314}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.WinForms.Controls.TestApplication", "TA.WinForms.Controls.TestApplication\TA.WinForms.Controls.TestApplication.csproj", "{6F805492-30C7-4EDF-ABBE-8E3D046CE35C}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		SharedCode\SharedCode.projitems*{35a88e2c-6b73-4e17-a37d-2f579cde4a87}*SharedItemsImports = 4
 		SharedCode\SharedCode.projitems*{3e94a060-ae5f-4f75-a81a-8792974aac9e}*SharedItemsImports = 13
+		SharedCode\SharedCode.projitems*{5bf01176-4ba4-4545-beec-1b2c341f5314}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{35A88E2C-6B73-4E17-A37D-2F579CDE4A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35A88E2C-6B73-4E17-A37D-2F579CDE4A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35A88E2C-6B73-4E17-A37D-2F579CDE4A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35A88E2C-6B73-4E17-A37D-2F579CDE4A87}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D39891B1-EDE6-4388-9F89-B8B73AC3B458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D39891B1-EDE6-4388-9F89-B8B73AC3B458}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D39891B1-EDE6-4388-9F89-B8B73AC3B458}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D39891B1-EDE6-4388-9F89-B8B73AC3B458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BF01176-4BA4-4545-BEEC-1B2C341F5314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BF01176-4BA4-4545-BEEC-1B2C341F5314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BF01176-4BA4-4545-BEEC-1B2C341F5314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BF01176-4BA4-4545-BEEC-1B2C341F5314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F805492-30C7-4EDF-ABBE-8E3D046CE35C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F805492-30C7-4EDF-ABBE-8E3D046CE35C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F805492-30C7-4EDF-ABBE-8E3D046CE35C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F805492-30C7-4EDF-ABBE-8E3D046CE35C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

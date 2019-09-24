@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TA.WinFormsControls.TestApplication.Properties
+namespace TA.WinForms.Controls.TestApplication.Properties
     {
 
 
@@ -44,7 +44,7 @@ namespace TA.WinFormsControls.TestApplication.Properties
                 {
                 if ((resourceMan == null))
                     {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TA.WinFormsControls.TestApplication.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TA.WinForms.Controls.TestApplication.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                     }
                 return resourceMan;
