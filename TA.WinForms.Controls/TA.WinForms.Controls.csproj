@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{35A88E2C-6B73-4E17-A37D-2F579CDE4A87}</ProjectGuid>
+    <ProjectGuid>{5BF01176-4BA4-4545-BEEC-1B2C341F5314}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TA.WinFormsControls</RootNamespace>
-    <AssemblyName>TA.WinFormsControls</AssemblyName>
+    <RootNamespace>TA.WinForms.Controls</RootNamespace>
+    <AssemblyName>TA.WinForms.Controls</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,42 +32,11 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  <!-- NuGet package properties -->
-  <PropertyGroup>
-    <PackageId>TA.WinForms.Controls</PackageId>
-    <Version>$(GitVersion_NuGetVersionV2)</Version>
-    <Authors>Tim Long</Authors>
-    <Company>Tigra Astronomy</Company>
-    <Description>A free collection of Windows Forms Controls by Tigra Astronomy</Description>
-    <Copyright>Copyright 2006-2019 Tigra Astronomy, all rights reserved</Copyright>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>WinForms control annunciator led cadence flash blink</PackageTags>
-    <PackageProjectUrl>https://github.com/Tigra-Astronomy/TA.WinForms.Controls</PackageProjectUrl>
-    <PackageIcon>TA.WinForms.Controls.64x64.png</PackageIcon>
-    <PackageOutputPath>..\NuGet-Packages</PackageOutputPath>
-    <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
-    <IncludeSymbols>true</IncludeSymbols>
-    <PackageProjectUrl>https://github.com/Tigra-Astronomy/TA.WinForms.Controls</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Tigra-Astronomy/TA.WinForms.Controls.git</RepositoryUrl>
-  </PropertyGroup>
-  <ItemGroup>
-    <!-- ... -->
-    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.2.0" />
-    <None Include="..\assets\TA.WinForms.Controls.64x64.png" Pack="true" PackagePath="\" />
-  </ItemGroup>
-  <!-- ... -->
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -99,13 +68,20 @@
     <Compile Include="TrafficLights.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Annunciator.resx" />
-    <EmbeddedResource Include="FadeDialog.resx" />
-    <EmbeddedResource Include="LEDIndicator.resx" />
+    <EmbeddedResource Include="Annunciator.resx">
+      <DependentUpon>Annunciator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FadeDialog.resx">
+      <DependentUpon>FadeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LEDIndicator.resx">
+      <DependentUpon>LEDIndicator.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Controls.cd" />
     <None Include="packages.config" />
+    <None Include="TA.WinForms.Controls.nuspec" />
   </ItemGroup>
   <Import Project="..\SharedCode\SharedCode.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -113,10 +89,8 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets'))" />
     <Error Condition="!Exists('..\packages\GitVersionTask.5.0.1\build\GitVersionTask.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitVersionTask.5.0.1\build\GitVersionTask.props'))" />
-    <Error Condition="!Exists('..\packages\NuGet.Build.Tasks.Pack.5.2.0\build\NuGet.Build.Tasks.Pack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.Build.Tasks.Pack.5.2.0\build\NuGet.Build.Tasks.Pack.targets'))" />
+    <Error Condition="!Exists('..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets'))" />
   </Target>
   <Import Project="..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets')" />
-  <Import Project="..\packages\NuGet.Build.Tasks.Pack.5.2.0\build\NuGet.Build.Tasks.Pack.targets" Condition="Exists('..\packages\NuGet.Build.Tasks.Pack.5.2.0\build\NuGet.Build.Tasks.Pack.targets')" />
 </Project>

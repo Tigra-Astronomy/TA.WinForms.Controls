@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TA.WinFormsControls.TestApplication.Properties
+namespace TA.WinForms.Controls.TestApplication.Properties
     {
 
 

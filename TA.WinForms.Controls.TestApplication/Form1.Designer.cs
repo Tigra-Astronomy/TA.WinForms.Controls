@@ -1,4 +1,6 @@
-﻿namespace TA.WinFormsControls.TestApplication
+﻿using TA.WinFormsControls;
+
+namespace TA.WinForms.Controls.TestApplication
     {
     partial class Form1
         {
@@ -63,9 +65,9 @@
             this.annunciatorPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // annunciatorPanel1
-            // 
+            //
             this.annunciatorPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.annunciatorPanel1.Controls.Add(this.annunciator1);
             this.annunciatorPanel1.Controls.Add(this.annunciator2);
@@ -87,9 +89,9 @@
             this.annunciatorPanel1.Name = "annunciatorPanel1";
             this.annunciatorPanel1.Size = new System.Drawing.Size(775, 100);
             this.annunciatorPanel1.TabIndex = 0;
-            // 
+            //
             // annunciator1
-            // 
+            //
             this.annunciator1.ActiveColor = System.Drawing.Color.Crimson;
             this.annunciator1.AutoSize = true;
             this.annunciator1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -102,9 +104,9 @@
             this.annunciator1.Size = new System.Drawing.Size(150, 32);
             this.annunciator1.TabIndex = 0;
             this.annunciator1.Text = "SteadyOff";
-            // 
+            //
             // annunciator2
-            // 
+            //
             this.annunciator2.ActiveColor = System.Drawing.Color.Crimson;
             this.annunciator2.AutoSize = true;
             this.annunciator2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -117,9 +119,9 @@
             this.annunciator2.Size = new System.Drawing.Size(105, 32);
             this.annunciator2.TabIndex = 1;
             this.annunciator2.Text = "Strobe";
-            // 
+            //
             // annunciator3
-            // 
+            //
             this.annunciator3.ActiveColor = System.Drawing.Color.Crimson;
             this.annunciator3.AutoSize = true;
             this.annunciator3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -132,9 +134,9 @@
             this.annunciator3.Size = new System.Drawing.Size(165, 32);
             this.annunciator3.TabIndex = 2;
             this.annunciator3.Text = "BlinkAlarm";
-            // 
+            //
             // annunciator4
-            // 
+            //
             this.annunciator4.ActiveColor = System.Drawing.Color.Crimson;
             this.annunciator4.AutoSize = true;
             this.annunciator4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -147,9 +149,9 @@
             this.annunciator4.Size = new System.Drawing.Size(150, 32);
             this.annunciator4.TabIndex = 3;
             this.annunciator4.Text = "BlinkFast";
-            // 
+            //
             // annunciator5
-            // 
+            //
             this.annunciator5.ActiveColor = System.Drawing.Color.Crimson;
             this.annunciator5.AutoSize = true;
             this.annunciator5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -162,9 +164,9 @@
             this.annunciator5.Size = new System.Drawing.Size(150, 32);
             this.annunciator5.TabIndex = 7;
             this.annunciator5.Text = "BlinkSlow";
-            // 
+            //
             // annunciator6
-            // 
+            //
             this.annunciator6.ActiveColor = System.Drawing.Color.Crimson;
             this.annunciator6.AutoSize = true;
             this.annunciator6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -177,9 +179,9 @@
             this.annunciator6.Size = new System.Drawing.Size(75, 32);
             this.annunciator6.TabIndex = 5;
             this.annunciator6.Text = "Wink";
-            // 
+            //
             // annunciator7
-            // 
+            //
             this.annunciator7.ActiveColor = System.Drawing.Color.Crimson;
             this.annunciator7.AutoSize = true;
             this.annunciator7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -191,9 +193,9 @@
             this.annunciator7.Size = new System.Drawing.Size(135, 32);
             this.annunciator7.TabIndex = 6;
             this.annunciator7.Text = "SteadyOn";
-            // 
+            //
             // NonstandardAnnunciator
-            // 
+            //
             this.NonstandardAnnunciator.ActiveColor = System.Drawing.Color.Crimson;
             this.NonstandardAnnunciator.AutoSize = true;
             this.NonstandardAnnunciator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -206,9 +208,9 @@
             this.NonstandardAnnunciator.Size = new System.Drawing.Size(300, 32);
             this.NonstandardAnnunciator.TabIndex = 6;
             this.NonstandardAnnunciator.Text = "Nonstandard Cadence";
-            // 
+            //
             // Sequence1
-            // 
+            //
             this.Sequence1.ActiveColor = System.Drawing.Color.Yellow;
             this.Sequence1.AutoSize = true;
             this.Sequence1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -220,9 +222,9 @@
             this.Sequence1.Size = new System.Drawing.Size(35, 37);
             this.Sequence1.TabIndex = 9;
             this.Sequence1.Text = "1";
-            // 
+            //
             // ledIndicator1
-            // 
+            //
             this.ledIndicator1.AutoSize = true;
             this.ledIndicator1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ledIndicator1.Cadence = TA.WinFormsControls.CadencePattern.SteadyOff;
@@ -233,9 +235,9 @@
             this.ledIndicator1.Name = "ledIndicator1";
             this.ledIndicator1.Size = new System.Drawing.Size(97, 17);
             this.ledIndicator1.TabIndex = 1;
-            // 
+            //
             // ledIndicator2
-            // 
+            //
             this.ledIndicator2.AutoSize = true;
             this.ledIndicator2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ledIndicator2.Cadence = TA.WinFormsControls.CadencePattern.Strobe;
@@ -247,9 +249,9 @@
             this.ledIndicator2.Size = new System.Drawing.Size(76, 17);
             this.ledIndicator2.Status = TA.WinFormsControls.TrafficLight.Red;
             this.ledIndicator2.TabIndex = 2;
-            // 
+            //
             // ledIndicator4
-            // 
+            //
             this.ledIndicator4.AutoSize = true;
             this.ledIndicator4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ledIndicator4.Cadence = TA.WinFormsControls.CadencePattern.BlinkFast;
@@ -261,9 +263,9 @@
             this.ledIndicator4.Size = new System.Drawing.Size(91, 17);
             this.ledIndicator4.Status = TA.WinFormsControls.TrafficLight.Yellow;
             this.ledIndicator4.TabIndex = 4;
-            // 
+            //
             // ledIndicator5
-            // 
+            //
             this.ledIndicator5.AutoSize = true;
             this.ledIndicator5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ledIndicator5.Cadence = TA.WinFormsControls.CadencePattern.BlinkSlow;
@@ -275,9 +277,9 @@
             this.ledIndicator5.Size = new System.Drawing.Size(93, 17);
             this.ledIndicator5.Status = TA.WinFormsControls.TrafficLight.Yellow;
             this.ledIndicator5.TabIndex = 5;
-            // 
+            //
             // ledIndicator6
-            // 
+            //
             this.ledIndicator6.AutoSize = true;
             this.ledIndicator6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ledIndicator6.Cadence = TA.WinFormsControls.CadencePattern.Wink;
@@ -288,9 +290,9 @@
             this.ledIndicator6.Name = "ledIndicator6";
             this.ledIndicator6.Size = new System.Drawing.Size(65, 17);
             this.ledIndicator6.TabIndex = 6;
-            // 
+            //
             // ledIndicator7
-            // 
+            //
             this.ledIndicator7.AutoSize = true;
             this.ledIndicator7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ledIndicator7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -300,9 +302,9 @@
             this.ledIndicator7.Name = "ledIndicator7";
             this.ledIndicator7.Size = new System.Drawing.Size(97, 17);
             this.ledIndicator7.TabIndex = 7;
-            // 
+            //
             // ledIndicator3
-            // 
+            //
             this.ledIndicator3.AutoSize = true;
             this.ledIndicator3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ledIndicator3.Cadence = TA.WinFormsControls.CadencePattern.BlinkAlarm;
@@ -314,9 +316,9 @@
             this.ledIndicator3.Size = new System.Drawing.Size(100, 17);
             this.ledIndicator3.Status = TA.WinFormsControls.TrafficLight.Red;
             this.ledIndicator3.TabIndex = 8;
-            // 
+            //
             // annunciator8
-            // 
+            //
             this.annunciator8.ActiveColor = System.Drawing.Color.Empty;
             this.annunciator8.AutoSize = true;
             this.annunciator8.BackColor = System.Drawing.SystemColors.Control;
@@ -329,9 +331,9 @@
             this.annunciator8.Size = new System.Drawing.Size(215, 37);
             this.annunciator8.TabIndex = 9;
             this.annunciator8.Text = "Still Alive";
-            // 
+            //
             // panel1
-            // 
+            //
             this.panel1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.panel1.Controls.Add(this.annunciator14);
             this.panel1.Controls.Add(this.annunciator13);
@@ -343,9 +345,9 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(557, 231);
             this.panel1.TabIndex = 10;
-            // 
+            //
             // annunciator14
-            // 
+            //
             this.annunciator14.ActiveColor = System.Drawing.Color.Blue;
             this.annunciator14.AutoSize = true;
             this.annunciator14.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -359,9 +361,9 @@
             this.annunciator14.Size = new System.Drawing.Size(145, 39);
             this.annunciator14.TabIndex = 9;
             this.annunciator14.Text = "4 Pulse";
-            // 
+            //
             // annunciator13
-            // 
+            //
             this.annunciator13.ActiveColor = System.Drawing.Color.Blue;
             this.annunciator13.AutoSize = true;
             this.annunciator13.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -375,9 +377,9 @@
             this.annunciator13.Size = new System.Drawing.Size(145, 39);
             this.annunciator13.TabIndex = 9;
             this.annunciator13.Text = "3 Pulse";
-            // 
+            //
             // annunciator12
-            // 
+            //
             this.annunciator12.ActiveColor = System.Drawing.Color.Blue;
             this.annunciator12.AutoSize = true;
             this.annunciator12.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -391,9 +393,9 @@
             this.annunciator12.Size = new System.Drawing.Size(145, 39);
             this.annunciator12.TabIndex = 9;
             this.annunciator12.Text = "2 Pulse";
-            // 
+            //
             // annunciator10
-            // 
+            //
             this.annunciator10.ActiveColor = System.Drawing.Color.Blue;
             this.annunciator10.AutoSize = true;
             this.annunciator10.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -407,9 +409,9 @@
             this.annunciator10.Size = new System.Drawing.Size(145, 39);
             this.annunciator10.TabIndex = 9;
             this.annunciator10.Text = "1 Pulse";
-            // 
+            //
             // annunciator11
-            // 
+            //
             this.annunciator11.ActiveColor = System.Drawing.Color.Blue;
             this.annunciator11.AutoSize = true;
             this.annunciator11.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -423,9 +425,9 @@
             this.annunciator11.Size = new System.Drawing.Size(217, 39);
             this.annunciator11.TabIndex = 9;
             this.annunciator11.Text = "Still Alive";
-            // 
+            //
             // annunciator9
-            // 
+            //
             this.annunciator9.ActiveColor = System.Drawing.Color.Blue;
             this.annunciator9.AutoSize = true;
             this.annunciator9.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -439,9 +441,9 @@
             this.annunciator9.Size = new System.Drawing.Size(217, 39);
             this.annunciator9.TabIndex = 9;
             this.annunciator9.Text = "Still Alive";
-            // 
+            //
             // Sequence2
-            // 
+            //
             this.Sequence2.ActiveColor = System.Drawing.Color.Yellow;
             this.Sequence2.AutoSize = true;
             this.Sequence2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -453,9 +455,9 @@
             this.Sequence2.Size = new System.Drawing.Size(35, 37);
             this.Sequence2.TabIndex = 9;
             this.Sequence2.Text = "2";
-            // 
+            //
             // Sequence3
-            // 
+            //
             this.Sequence3.ActiveColor = System.Drawing.Color.Yellow;
             this.Sequence3.AutoSize = true;
             this.Sequence3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -467,9 +469,9 @@
             this.Sequence3.Size = new System.Drawing.Size(35, 37);
             this.Sequence3.TabIndex = 9;
             this.Sequence3.Text = "3";
-            // 
+            //
             // Sequence4
-            // 
+            //
             this.Sequence4.ActiveColor = System.Drawing.Color.Yellow;
             this.Sequence4.AutoSize = true;
             this.Sequence4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -481,9 +483,9 @@
             this.Sequence4.Size = new System.Drawing.Size(35, 37);
             this.Sequence4.TabIndex = 9;
             this.Sequence4.Text = "4";
-            // 
+            //
             // Sequence5
-            // 
+            //
             this.Sequence5.ActiveColor = System.Drawing.Color.Yellow;
             this.Sequence5.AutoSize = true;
             this.Sequence5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -495,9 +497,9 @@
             this.Sequence5.Size = new System.Drawing.Size(35, 37);
             this.Sequence5.TabIndex = 9;
             this.Sequence5.Text = "5";
-            // 
+            //
             // Sequence6
-            // 
+            //
             this.Sequence6.ActiveColor = System.Drawing.Color.Yellow;
             this.Sequence6.AutoSize = true;
             this.Sequence6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -509,9 +511,9 @@
             this.Sequence6.Size = new System.Drawing.Size(35, 37);
             this.Sequence6.TabIndex = 9;
             this.Sequence6.Text = "6";
-            // 
+            //
             // Sequence7
-            // 
+            //
             this.Sequence7.ActiveColor = System.Drawing.Color.Yellow;
             this.Sequence7.AutoSize = true;
             this.Sequence7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -523,9 +525,9 @@
             this.Sequence7.Size = new System.Drawing.Size(35, 37);
             this.Sequence7.TabIndex = 9;
             this.Sequence7.Text = "7";
-            // 
+            //
             // Sequence8
-            // 
+            //
             this.Sequence8.ActiveColor = System.Drawing.Color.Yellow;
             this.Sequence8.AutoSize = true;
             this.Sequence8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -537,9 +539,9 @@
             this.Sequence8.Size = new System.Drawing.Size(35, 37);
             this.Sequence8.TabIndex = 9;
             this.Sequence8.Text = "8";
-            // 
+            //
             // Form1
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
